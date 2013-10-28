@@ -1,93 +1,74 @@
 import java.awt.*;
 import java.applet.*;
 
-public class AmericanFlag extends Applet {
+public class AmericanFlag {
         
-        private AmericanFlag flag;
         private int width;
         private int height;
+        private int x;
+        private int y;
+        private Rectangle union;
+
+        private Rectangle[] stripes = new Rectangle[13];
+        // private Star[] stars;
+        private int scale;
 
 
-        public AmericanFlag(int width, int height) {
-        	setHeight(height);
-			setWidth(width);
-		}
+        public AmericanFlag(int x, int y, int scale) {
+            this.width = 338;
+            this.height = 169;
+            for (int i=0; i<13; i++) {
+                    if (i%2==0) {
+                             this.stripes[i] = new Rectangle(new Point(x, y+(height/13*i)*scale), width*scale, (height/13)*scale, Color.RED);
+                            
 
-		public void setWidth(int width) {
-			if (width > 0) {
-				this.width = width;
-			}
-		}
-		public void setHeight(int height) {
-			if (height>0) {
-				this.height = height;
-			}
-		}
+                    } else {
 
+                            this.stripes[i] = new Rectangle(new Point(x, y+(i*height/13)*scale), width*scale, (height/13)*scale, Color.WHITE);
+                            
 
-        public void draw(Graphics g, int width, int height) {
+                    }
+            }
+            this.union = new Rectangle(new Point(x, y), width*2/5*scale, height*7/13*scale, Color.BLUE);
                
-        
-			// g.setColor(Color.RED);
-			// g.fillRect(0.0, 0.0, width, height);
-
-			// g.setColor(Color.WHITE);
-
-		for (int i=0; i<13; i++) {
-			if (i%2==0) {
-				g.setColor(Color.RED);
-				g.fillRect(0, 2*i*height/13 + height/13, width, height/13);	
-			} else {
-				g.setColor(Color.RED);
-				g.fillRect(0, 2*i*height/13 + height/13, width, height/13);
-			}
-		}
-			
 
         }
-        public static void main(String[] args) {
-        	AmericanFlag flag = new AmericanFlag(0, 50);
 
-        	// flag.draw(g);
+
+
+        public void draw(Graphics g) {
+            for (int i=0; i<13; i++) {
+                this.stripes[i].draw(g);
+                
+            }
+            this.union.draw(g);
+
         }
-        
+
+
 
 }
+                        
+//         private Rectangle stripe;
+//         private int width;
+//         private int height;
+//         private Rectangle union;
+        
 
+//         //constuction
+//         public AmericanFlag(int height, int width) {
+//                 setHeight(height);
+//                 setWidth(width);
+//                 draw();
+//         }
 
-    
-
-
-
-// 	private Rectangle stripe;
-// 	private int width;
-// 	private int height;
-// 	private Rectangle union;
-	
-
-// 	//constuction
-// 	public AmericanFlag(int height, int width) {
-// 		setHeight(height);
-// 		setWidth(width);
-// 		draw();
-// 	}
-
-// 	public void setWidth(int width) {
-// 		if (width > 0) {
-// 			this.width = width;
-// 		}
-// 	}
-// 	public void setHeight(int height) {
-// 		if (height>0) {
-// 			this.height = height;
-// 		}
-// 	}
-
-
-	
-	
-// }
-
-// //stripe.draw
-// one fill rect
-// each object should be able to draw itself
+//         public void setWidth(int width) {
+//                 if (width > 0) {
+//                         this.width = width;
+//                 }
+//         }
+//         public void setHeight(int height) {
+//                 if (height>0) {
+//                         this.height = height;
+//                 }
+//         }
